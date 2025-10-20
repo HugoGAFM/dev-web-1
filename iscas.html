@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pescarias - Iscas e Materiais</title>
+</head>
+<body>
+
+  
+
+  <h1>Iscas e Materiais</h1>
+  <p>Encontre aqui as melhores iscas e materiais para a sua pescaria!</p>
+
+  <div id="menu"></div>
+
+  <script>
+    fetch('menu.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('menu').innerHTML = data);
+  </script>
+
+  <table>
+    <tr>
+      
+      <td valign="top" width="250">
+        <h2>CARACTERÍSTICA</h2>
+        <label><input type="checkbox"> Grub</label><br>
+        <label><input type="checkbox"> Rattles</label><br>
+        <label><input type="checkbox"> Shad</label><br>
+        <label><input type="checkbox"> Tuvira</label><br>
+        <label><input type="checkbox"> Worm - Minhoca</label><br><br>
+
+        <h2>TAMANHO</h2>
+        <label><input type="checkbox"> 3,0 - 6,9 cm</label><br>
+        <label><input type="checkbox"> 7,0 - 9,9 cm</label><br>
+        <label><input type="checkbox"> 10,0 - 11,9 cm</label><br>
+        <label><input type="checkbox"> 12,0 - 13,9 cm</label><br>
+        <label><input type="checkbox"> 14,0 - Acima</label><br><br>
+
+        <h2>MARCAS</h2>
+        <label><input type="checkbox"> Monster 3X</label><br>
+        <label><input type="checkbox"> Albatroz</label><br>
+        <label><input type="checkbox"> Big Ones</label><br>
+        <label><input type="checkbox"> Black Pearl</label><br>
+        <label><input type="checkbox"> Action Plastic</label><br>
+      </td>
+
+      
+      <td valign="top">
+        <h2>Produtos em destaque</h2>
+        <table border="0" cellspacing="20">
+          <tr>
+            <td align="center">
+              <img src="imagens/isca1.jpg" alt="Isca Petisco JR Pesca" width="200"><br>
+              <strong>Isca Petisco JR Pesca</strong><br>
+              12cm - C/ 5UN<br>
+              <b>R$ 42,57</b>
+            </td>
+            <td align="center">
+              <img src="imagens/isca2.jpg" alt="Isca Simples" width="200"><br>
+              <strong>Isca Simples</strong><br>
+              12cm - C/ 3UN<br>
+              <b>R$ 36,89</b>
+            </td>
+            <td align="center">
+              <img src="imagens/isca3.jpg" alt="Isca Pesca Soft" width="200"><br>
+              <strong>Isca Artificial Pesca Soft</strong><br>
+              13cm - C/ 3UN<br>
+              <b>R$ 38,63</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center">
+              <img src="imagens/material1.jpg" alt="Linha Multifilamento 300m" width="200"><br>
+              <strong>Linha Multifilamento 300m</strong><br>
+              0.20mm - Alta resistência<br>
+              <b>R$ 59,90</b>
+            </td>
+            <td align="center">
+              <img src="imagens/material2.jpg" alt="Alicate de Pesca Inox" width="200"><br>
+              <strong>Alicate de Pesca Inox</strong><br>
+              Ferramenta multifuncional<br>
+              <b>R$ 34,90</b>
+            </td>
+            <td align="center">
+              <img src="imagens/material3.jpg" alt="Anzol de Aço Carbono" width="200"><br>
+              <strong>Anzol de Aço Carbono</strong><br>
+              50 unidades - tamanho 3/0<br>
+              <b>R$ 29,90</b>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <footer>
+    <hr>
+    <p><strong>Pescarias © 2025</strong></p>
+    <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
+  </footer>
+</body>
+</html>
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pescarias - Equipamentos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ 
+
+  <h1>Equipamentos</h1>
+  <p>Aqui você encontra varas, molinetes, carretilhas e muito mais!</p>
+
+  <div id="menu"></div>
+
+    <script>
+  fetch('menu.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('menu').innerHTML = data);
+    </script>
+
+
+  <hr>
+
+  <table width="100%">
+    <tr>
+      
+      <td width="25%" valign="top">
+        <h3>Filtros</h3>
+
+        <h4>Tipo de Equipamento</h4>
+        <form>
+          <input type="checkbox" id="varas" name="tipo" value="varas">
+          <label for="varas">Varas de Pesca</label><br>
+
+          <input type="checkbox" id="carretilhas" name="tipo" value="carretilhas">
+          <label for="carretilhas">Carretilhas</label><br>
+
+          <input type="checkbox" id="molinetes" name="tipo" value="molinetes">
+          <label for="molinetes">Molinetes</label><br>
+
+          <input type="checkbox" id="anzóis" name="tipo" value="anzois">
+          <label for="anzóis">Anzóis</label><br>
+
+          <input type="checkbox" id="alicates" name="tipo" value="alicates">
+          <label for="alicates">Alicates e Ferramentas</label><br>
+        </form>
+
+        <h4>Tamanho</h4>
+        <form>
+          <input type="checkbox" id="pequeno" name="tamanho" value="pequeno">
+          <label for="pequeno">Pequeno (até 1,5m)</label><br>
+
+          <input type="checkbox" id="medio" name="tamanho" value="medio">
+          <label for="medio">Médio (1,5m a 2,4m)</label><br>
+
+          <input type="checkbox" id="grande" name="tamanho" value="grande">
+          <label for="grande">Grande (acima de 2,4m)</label><br>
+        </form>
+
+        <h4>Marcas</h4>
+        <form>
+          <input type="checkbox" id="marine" name="marca" value="marine">
+          <label for="marine">Marine Sports</label><br>
+
+          <input type="checkbox" id="albatroz" name="marca" value="albatroz">
+          <label for="albatroz">Albatroz</label><br>
+
+          <input type="checkbox" id="lumis" name="marca" value="lumis">
+          <label for="lumis">Lumis</label><br>
+
+          <input type="checkbox" id="shimano" name="marca" value="shimano">
+          <label for="shimano">Shimano</label><br>
+        </form>
+      </td>
+
+      
+      <td valign="top">
+        <h2>Produtos em destaque</h2>
+
+        <table border="0" cellspacing="20">
+          <tr>
+            <td align="center">
+              <img src="imagens/vara1.jpg" alt="Vara de pesca" width="150"><br>
+              <strong>Vara de Pesca Lumis Carbon Pro 2,10m</strong><br>
+              R$ 199,90<br>
+            </td>
+
+            <td align="center">
+              <img src="imagens/carretilha1.jpg" alt="Carretilha Shimano" width="150"><br>
+              <strong>Carretilha Shimano Curado DC</strong><br>
+              R$ 1.299,90<br>
+            </td>
+
+            <td align="center">
+              <img src="imagens/molinetes1.jpg" alt="Molinetes Marine Sports" width="150"><br>
+              <strong>Molinetes Marine Sports Arena 4000</strong><br>
+              R$ 279,90<br>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center">
+              <img src="imagens/alicate1.jpg" alt="Alicate de pesca" width="150"><br>
+              <strong>Alicate Multiuso Albatroz</strong><br>
+              R$ 59,90<br>
+ 
+            </td>
+
+            <td align="center">
+              <img src="imagens/anzois1.jpg" alt="Kit Anzóis" width="150"><br>
+              <strong>Kit Anzóis Inox Sortidos 100un</strong><br>
+              R$ 29,90<br>
+  
+            </td>
+
+            <td align="center">
+              <img src="imagens/vara2.jpg" alt="Vara de pesca carbono" width="150"><br>
+              <strong>Vara de Pesca Carbon Strike 2,40m</strong><br>
+              R$ 239,90<br>
+ 
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <footer>
+    <hr>
+    <p><strong>Pescarias © 2025</strong></p>
+    <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
+  </footer>
+
+</body>
+</html>

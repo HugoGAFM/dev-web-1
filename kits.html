@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pescarias - Kits de Pesca</title>
+</head>
+<body>
+
+  
+
+  <h1>Kits de Pesca</h1>
+  <p>Monte sua pescaria completa com nossos kits prontos para uso!</p>
+
+
+  <div id="menu"></div>
+  <script>
+    fetch('menu.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('menu').innerHTML = data);
+  </script>
+
+  <table>
+    <tr>
+      
+      <td valign="top" width="250">
+        <h2>TIPO DE KIT</h2>
+        <label><input type="checkbox"> Kit Completo</label><br>
+        <label><input type="checkbox"> Kit para Iniciantes</label><br>
+        <label><input type="checkbox"> Kit Profissional</label><br>
+        <label><input type="checkbox"> Kit Infantil</label><br><br>
+
+        <h2>INCLUI</h2>
+        <label><input type="checkbox"> Vara e Molinete</label><br>
+        <label><input type="checkbox"> Anzóis</label><br>
+        <label><input type="checkbox"> Iscas</label><br>
+        <label><input type="checkbox"> Caixa Organizadora</label><br><br>
+
+        <h2>FAIXA DE PREÇO</h2>
+        <label><input type="checkbox"> Até R$100</label><br>
+        <label><input type="checkbox"> R$101 - R$200</label><br>
+        <label><input type="checkbox"> R$201 - R$400</label><br>
+        <label><input type="checkbox"> Acima de R$400</label><br><br>
+
+        <h2>MARCAS</h2>
+        <label><input type="checkbox"> Albatroz</label><br>
+        <label><input type="checkbox"> Marine Sports</label><br>
+        <label><input type="checkbox"> Saint Plus</label><br>
+        <label><input type="checkbox"> Okuma</label><br>
+      </td>
+
+      <!-- Coluna de produtos -->
+      <td valign="top">
+        <table border="0" cellspacing="20">
+          <tr>
+            <td align="center">
+              <img src="imagens/kit1.jpg" alt="Kit de Pesca Completo Albatroz" width="200"><br>
+              <strong>Kit de Pesca Completo Albatroz</strong><br>
+              Vara + Molinete + Acessórios<br>
+              <b>R$ 249,90</b>
+            </td>
+            <td align="center">
+              <img src="imagens/kit2.jpg" alt="Kit Iniciante Marine Sports" width="200"><br>
+              <strong>Kit Iniciante Marine Sports</strong><br>
+              Ideal para pesca em rio e lago<br>
+              <b>R$ 189,90</b>
+            </td>
+            <td align="center">
+              <img src="imagens/kit3.jpg" alt="Kit Infantil com Vara Telescópica" width="200"><br>
+              <strong>Kit Infantil com Vara Telescópica</strong><br>
+              Colorido e leve para crianças<br>
+              <b>R$ 119,90</b>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <footer>
+    <hr>
+    <p><strong>Pescarias © 2025</strong></p>
+    <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
+  </footer>
+</body>
+</html>
