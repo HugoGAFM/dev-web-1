@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkout</title>
+    </head>
+    <body>
+        <header>
+            <h1>Checkout</h1>
+        </header>
+        <main>
+            <form>
+                <h2>Dados pessoais</h2>
+
+                <label for="nomeComp">Nome completo </label>
+                <input type="text" id="nomeComp" name="nomeComp"><br><br>
+
+                <label for="cpf">CPF </label>
+                <input type="text" id="cpf" name="cpf" placeholder="123.345.567-89"><br><br>
+
+                <label for="telefone">Telefone </label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(11)91234-4567"><br><br>
+
+                <h2>Entrega</h2>
+
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" name="cep" placeholder="12345-567"><br><br>
+
+                <label for="logradouro">Logradouro</label>
+                <input type="text" id="logradouro" name="logradouro">
+                <label for="numero">Número</label>
+                <input type="number" id="numero" name="numero"><br><br>
+                <label for="complemento">Complemento</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Ex: apartamento, casa">
+
+                <label for="bairro">Bairro</label>
+                <input type="text" id="bairro" name="bairro"><br><br>
+
+                <label for="estado">Estado</label>
+                <input list="estados" id="estado" name="estado"/>
+                <datalist id="estados">
+                    <option value="AC"></option>
+                    <option value="AL"></option>
+                    <option value="AP"></option>
+                    <option value="AM"></option>
+                    <option value="BA"></option>
+                    <option value="CE"></option>
+                    <option value="ES"></option>
+                    <option value="GO"></option>
+                    <option value="MA"></option>
+                    <option value="MT"></option>
+                    <option value="MS"></option>
+                    <option value="MG"></option>
+                    <option value="PA"></option>
+                    <option value="PB"></option>
+                    <option value="PR"></option>
+                    <option value="PE"></option>
+                    <option value="PI"></option>
+                    <option value="RJ"></option>
+                    <option value="RN"></option>
+                    <option value="RS"></option>
+                    <option value="RO"></option>
+                    <option value="RR"></option>
+                    <option value="SC"></option>
+                    <option value="SP"></option>
+                    <option value="SE"></option>
+                    <option value="TO"></option>
+                </datalist>
+
+                <label for="cidade"> Cidade</label>
+                <input type="text" id="cidade" name="cidade"><br><br>
+
+                <h2>Pagamento</h2>
+
+                <label for="pagamento">Selecione uma forma de pagamento</label><br><br>
+                <input type="radio" id="pagamento" name="pagamento">Pix</input><br>
+                <input type="radio" id="pagamento" name="pagamento">Cartão de crédito</input><br><br>
+
+                <input type="submit" value="Finalizar compra">
+            </form>
+        </main>
+    </body>
+</html>
