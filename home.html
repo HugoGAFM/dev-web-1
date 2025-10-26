@@ -1,55 +1,152 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pescarias - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-
-  <h1>Bem-vindo ao Pescarias!</h1>
-  <p>O melhor e-commerce para quem ama pescar!</p>
-
-  <nav>
-    <a href="index.html">Página Principal</a> |
-    <a href="equipamentos.html">Equipamentos</a> |
-    <a href="iscas.html">Iscas e Materiais</a> |
-    <a href="kits.html">Kits de Pesca</a>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Pescarias!</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Página Principal</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Produtos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="equipamentos.html">Equipamentos</a></li>
+              <li><a class="dropdown-item" href="iscas.html">Iscas e Materiais</a></li>
+              <li><a class="dropdown-item" href="kits.html">Kits de Pesca</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
-
-  <section>
-    <h2>Sobre o Pescarias</h2>
-    <p>O <strong>Pescarias</strong> é o seu portal completo para pesca esportiva e recreativa. Aqui você encontra desde varas e molinetes até iscas profissionais e kits prontos para qualquer tipo de pescaria!</p>
+  <section class="row featurette">
+    <div class="col-md-4">
+      <h1 class="featurette-heading fw-normal lh-1">Bem-vindo ao Pescarias!</h1>
+      <p class="lead">O melhor e-commerce para quem ama pescar!</p>
+    </div>
+    <div class="col-md-8 gx-1">
+      <img src="./imagens/pesca.jpg" alt="Vara de pesca lançada a um lago durante o por do sol."
+        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+    </div>
   </section>
-
   <section>
-    <h2>Nossas categorias</h2>
-    <ul>
-      <li><a href="equipamentos.html">🎣 Equipamentos de Pesca</a></li>
-      <li><a href="iscas.html">🐟 Iscas e Materiais</a></li>
-      <li><a href="kits.html">🧰 Kits de Pesca</a></li>
-    </ul>
+    <hr class="featurette-divider">
+    <h2 class="featurette-heading fw-normal text-center lh-1 marketing-title">Destaques do mês</h2>
+    <div class="container marketing">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <img src="imagens/isca3.jpg" alt="Isca Pesca Soft" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Isca Artificial Pesca Soft</h5>
+              <p>13cm - C/ 3UN</p>
+              <p><b>R$ 38,63</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <img src="imagens/vara1.jpg" alt="Vara de pesca" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Vara de Pesca Lumis Carbon Pro 2,10m</h5>
+              <p>1UN - C/ Garantia</p>
+              <p><b>R$ 199,90</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <img src="imagens/kit1.jpg" alt="Kit de Pesca Completo Albatroz" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Kit de Pesca Completo Albatroz</h5>
+              <p>Vara + Molinete + Acessórios</p>
+              <p><b>R$ 249,90</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Destaques do mês</h2>
-    <ul>
-      <li>Vara de Pesca Carbon Pro 2,10m</li>
-      <li>Isca Artificial Rapala X-Rap 10cm</li>
-      <li>Kit Completo de Pesca com Estojo e Acessórios</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>O que dizem nossos clientes</h2>
-    <blockquote>
-      "Comprei meu primeiro kit de pesca aqui e adorei a qualidade!" — <em>João pé de feijão</em>
-    </blockquote>
-    <blockquote>
-      "Entrega super rápida e produtos excelentes. Recomendo!" — <em>Marina Marimar</em>
-    </blockquote>
-  </section>
-
+  <hr class="featurette-divider">
+  <h2 class="featurette-heading fw-normal text-center lh-1 marketing-title">O que dizem nossos clientes</h2>
+  <div class="row quoteRow">
+    <div class="col-sm-6 container">
+      <div class="card card border-light">
+        <div class="card-header">
+          24/10/2025
+        </div>
+        <div class="card-body">
+          <figure>
+            <blockquote class="blockquote">
+              <p>Comprei meu primeiro kit de pesca aqui e adorei a qualidade!</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              João Pé de Feijão
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row quoteRow">
+    <div class="col-sm-6 container">
+      <div class="card card border-light">
+        <div class="card-header">
+          22/10/2025
+        </div>
+        <div class="card-body">
+          <figure>
+            <blockquote class="blockquote">
+              <p>Entrega super rápida e produtos excelentes. Recomendo!</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Marina Marimar
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row quoteRow">
+    <div class="col-sm-6 container">
+      <div class="card card border-light">
+        <div class="card-header">
+          24/10/2025
+        </div>
+        <div class="card-body">
+          <figure>
+            <blockquote class="blockquote">
+              <p>Nunca vi lugar mais barato!</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Tio Patinhas
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer>
     <hr>
     <p><strong>Pescarias © 2025</strong></p>
@@ -58,5 +155,5 @@
   </footer>
 
 </body>
-</html>
 
+</html>
