@@ -74,6 +74,13 @@ margin-top: 2rem;
 margin-bottom: 2rem;
 }
 
+/* Filters
+-------------------------------------------------- */
+
+.filter-divider {
+    margin: 2rem 0;
+}
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
