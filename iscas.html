@@ -1,107 +1,207 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pescarias - Iscas e Materiais</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-
-  
-
-  <h1>Iscas e Materiais</h1>
-  <p>Encontre aqui as melhores iscas e materiais para a sua pescaria!</p>
-
-  <div id="menu"></div>
-
   <script>
     fetch('menu.html')
       .then(response => response.text())
       .then(data => document.getElementById('menu').innerHTML = data);
   </script>
+  <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
 
-  <table>
-    <tr>
-      
-      <td valign="top" width="250">
-        <h2>CARACTERÍSTICA</h2>
-        <label><input type="checkbox"> Grub</label><br>
-        <label><input type="checkbox"> Rattles</label><br>
-        <label><input type="checkbox"> Shad</label><br>
-        <label><input type="checkbox"> Tuvira</label><br>
-        <label><input type="checkbox"> Worm - Minhoca</label><br><br>
+  <section class="py-5">
+    <h1 class="fw-normal lh-1">Iscas e Materiais</h2>
+      <p>Encontre aqui as melhores iscas e materiais para a sua pescaria!</p>
+  </section>
 
-        <h2>TAMANHO</h2>
-        <label><input type="checkbox"> 3,0 - 6,9 cm</label><br>
-        <label><input type="checkbox"> 7,0 - 9,9 cm</label><br>
-        <label><input type="checkbox"> 10,0 - 11,9 cm</label><br>
-        <label><input type="checkbox"> 12,0 - 13,9 cm</label><br>
-        <label><input type="checkbox"> 14,0 - Acima</label><br><br>
-
-        <h2>MARCAS</h2>
-        <label><input type="checkbox"> Monster 3X</label><br>
-        <label><input type="checkbox"> Albatroz</label><br>
-        <label><input type="checkbox"> Big Ones</label><br>
-        <label><input type="checkbox"> Black Pearl</label><br>
-        <label><input type="checkbox"> Action Plastic</label><br>
-      </td>
-
-      
-      <td valign="top">
-        <h2>Produtos em destaque</h2>
-        <table border="0" cellspacing="20">
-          <tr>
-            <td align="center">
-              <img src="imagens/isca1.jpg" alt="Isca Petisco JR Pesca" width="200"><br>
-              <strong>Isca Petisco JR Pesca</strong><br>
-              12cm - C/ 5UN<br>
-              <b>R$ 42,57</b>
-            </td>
-            <td align="center">
-              <img src="imagens/isca2.jpg" alt="Isca Simples" width="200"><br>
-              <strong>Isca Simples</strong><br>
-              12cm - C/ 3UN<br>
-              <b>R$ 36,89</b>
-            </td>
-            <td align="center">
-              <img src="imagens/isca3.jpg" alt="Isca Pesca Soft" width="200"><br>
-              <strong>Isca Artificial Pesca Soft</strong><br>
-              13cm - C/ 3UN<br>
-              <b>R$ 38,63</b>
-            </td>
-          </tr>
-
-          <tr>
-            <td align="center">
-              <img src="imagens/material1.jpg" alt="Linha Multifilamento 300m" width="200"><br>
-              <strong>Linha Multifilamento 300m</strong><br>
-              0.20mm - Alta resistência<br>
-              <b>R$ 59,90</b>
-            </td>
-            <td align="center">
-              <img src="imagens/material2.jpg" alt="Alicate de Pesca Inox" width="200"><br>
-              <strong>Alicate de Pesca Inox</strong><br>
-              Ferramenta multifuncional<br>
-              <b>R$ 34,90</b>
-            </td>
-            <td align="center">
-              <img src="imagens/material3.jpg" alt="Anzol de Aço Carbono" width="200"><br>
-              <strong>Anzol de Aço Carbono</strong><br>
-              50 unidades - tamanho 3/0<br>
-              <b>R$ 29,90</b>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-
+  <hr class="filter-divider">
+  <section class="row">
+    <div class="col-lg-3 col-md-4 col-sm-5">
+      <h4>Filtros</h4>
+      <form>
+        <fieldset>
+          <legend>Caracteristica</legend>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="grub" id="grub" name="caracteristica">
+            <label class="form-check-label" for="grub">
+              Grub
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="rattles" name="caracteristica" id="rattles">
+            <label class="form-check-label" for="rattles">
+              Rattles
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="shad" name="caracteristica" value="shad">
+            <label class="form-check-label" for="shad">
+              Shad
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tuvira" name="caracteristica" value="tuvira">
+            <label class="form-check-label" for="tuvira">
+              Tuvira
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="worm" name="caracteristica" value="worm">
+            <label class="form-check-label" for="worm">
+              Worm - Minhoca
+            </label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Tamanho</legend>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tamanho-1" name="tamanho" value="tamanho-1">
+            <label class="form-check-label" for="tamanho-1">
+              3,0 - 6,9 cm
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tamanho-2" name="tamanho" value="tamanho-2">
+            <label class="form-check-label" for="tamanho-2">
+              7,0 - 9,9 cm
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tamanho-3" name="tamanho" value="tamanho-3">
+            <label class="form-check-label" for="tamanho-3">
+              10,0 - 11,9 cm
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tamanho-4" name="tamanho" value="tamanho-4">
+            <label class="form-check-label" for="tamanho-4">
+              12,0 - 13,9 cm
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tamanho-5" name="tamanho" value="tamanho-5">
+            <label class="form-check-label" for="tamanho-5">
+              14,0 - Acima
+            </label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Marcas</legend>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="monster3x" name="marca" value="monster3x">
+            <label class="form-check-label" for="monster3x">Monster 3X</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="albatroz" name="marca" value="albatroz">
+            <label class="form-check-label" for="albatroz">Albatroz</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="bigones" name="marca" value="bigones">
+            <label class="form-check-label" for="bigones">Big Ones</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="blackpearl" name="marca" value="blackpearl">
+            <label class="form-check-label" for="blackpearl">Black Pearl</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="actionplastic" name="marca" value="actionplastic">
+            <label class="form-check-label" for="actionplastic">Action Plastic</label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-lg-9 col-md-8 col-sm-7">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card h-100">
+            <img src="imagens/isca1.jpg" alt="Isca Petisco JR Pesca" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Isca Petisco JR Pesca</h5>
+              <p>12cm - C/ 5UN</p>
+              <p><b>R$ 42,57</b></p>
+              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card h-100">
+            <img src="imagens/isca2.jpg" alt="Isca Simples" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Carretilha Shimano Curado DC</h5>
+              <p>12cm - C/ 3UN</p>
+              <p><b>R$ 36,89</b></p>
+              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card h-100">
+            <img src="imagens/isca3.jpg" alt="Isca Pesca Soft" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Isca Artificial Pesca Soft</h5>
+              <p>13cm - C/ 3UN</p>
+              <p><b>R$ 38,63</b></p>
+              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card h-100">
+            <img src="imagens/material1.jpg" alt="Linha Multifilamento 300m" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Linha Multifilamento 300m</h5>
+              <p>0.20mm - Alta resistência</p>
+              <p><b>R$ 59,90</b></p>
+              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card h-100">
+            <img src="imagens/material2.jpg" alt="Alicate de Pesca Inox" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Alicate de Pesca Inox</h5>
+              <p>Ferramenta multifuncional</p>
+              <p><b>R$ 34,90</b></p>
+              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card h-100">
+            <img src="imagens/material3.jpg" alt="Anzol de Aço Carbono" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Anzol de Aço Carbono</h5>
+              <p>50 unidades - tamanho 3/0</p>
+              <p><b>R$ 29,90</b></p>
+              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
   <footer>
     <hr>
     <p><strong>Pescarias © 2025</strong></p>
     <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
   </footer>
 </body>
+
+<!-- CONTEUDO A COPIAR -->
+
 </html>
-
-

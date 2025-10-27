@@ -14,46 +14,27 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Pescarias!</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Página Principal</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Produtos
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="equipamentos.html">Equipamentos</a></li>
-              <li><a class="dropdown-item" href="iscas.html">Iscas e Materiais</a></li>
-              <li><a class="dropdown-item" href="kits.html">Kits de Pesca</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <section class="row featurette">
+  <script>
+    fetch('menu.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('menu').innerHTML = data);
+  </script>
+  <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
+
+  <section class="row main">
     <div class="col-md-4">
-      <h1 class="featurette-heading fw-normal lh-1">Bem-vindo ao Pescarias!</h1>
+      <h1 class="main-heading fw-normal lh-1">Bem-vindo ao Pescarias!</h1>
       <p class="lead">O melhor e-commerce para quem ama pescar!</p>
     </div>
     <div class="col-md-8 gx-1">
       <img src="./imagens/pesca.jpg" alt="Vara de pesca lançada a um lago durante o por do sol."
-        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+        class="bd-placeholder-img bd-placeholder-img-lg main-image img-fluid mx-auto">
     </div>
   </section>
   <section>
-    <hr class="featurette-divider">
-    <h2 class="featurette-heading fw-normal text-center lh-1 marketing-title">Destaques do mês</h2>
-    <div class="container marketing">
+    <hr class="main-divider">
+    <h2 class="main-heading fw-normal text-center lh-1 main-title">Destaques do mês</h2>
+    <div class="container">
       <div class="row">
         <div class="col-sm-4">
           <div class="card">
@@ -88,8 +69,8 @@
       </div>
     </div>
   </section>
-  <hr class="featurette-divider">
-  <h2 class="featurette-heading fw-normal text-center lh-1 marketing-title">O que dizem nossos clientes</h2>
+  <hr class="main-divider">
+  <h2 class="main-heading fw-normal text-center lh-1 main-title">O que dizem nossos clientes</h2>
   <div class="row quoteRow">
     <div class="col-sm-6 container">
       <div class="card card border-light">
