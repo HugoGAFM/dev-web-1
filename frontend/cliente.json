@@ -1,0 +1,28 @@
+[
+  { 
+    "login": "amandalps", 
+    "senha": "1234", 
+    "nome": "Amanda Lopes", 
+    "email": "amandalps@gmail.com", 
+    "telefone": "(11) 97756-1109", 
+    "cidade": "Campinas" 
+  },
+  
+  { 
+    "login": "victorcorrea", 
+    "senha": "45678", 
+    "nome": "Victor Correa", 
+    "email": "victcrr20@hotmail.com", 
+    "telefone": "(21) 99976-3609", 
+    "cidade": "Rio de Janeiro" 
+  },
+
+  {
+    "login": "andressa",
+    "senha": "abcd",
+    "nome": "Andressa Andrade",
+    "email": "andressaand@gmail.com",
+    "telefone": "(11) 98276-0099",
+    "cidade": "São Paulo"
+  }
+]
