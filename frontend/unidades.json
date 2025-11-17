@@ -3,20 +3,23 @@
     "unidade": "Unidade Moema", 
     "email": "pescariasmoema@gmail.com", 
     "telefone": "(11) 98256-9291", 
-    "responsavel": "César Mendes" 
+    "responsavel": "César Mendes",
+    "endereco": "Rua Tomás Silva, 213"
   },
   
   { 
     "unidade": "Unidade Centro", 
     "email": "pescariascentro@gmail.com", 
     "telefone": "(11) 90987-3423", 
-    "responsavel": "Fátima Silva" 
+    "responsavel": "Fátima Silva",
+    "endereco": "Rua Itamaracá, 900"
   },
 
   {
     "unidade": "Unidade Morumbi", 
     "email": "pescariasmorumbi@gmail.com", 
     "telefone": "(11) 97754-6923", 
-    "responsavel": "Alessandra Neves" 
+    "responsavel": "Alessandra Neves",
+    "endereco": "Av. Giovanni Gronchi, 167"
   }
 ]
