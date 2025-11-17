@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pescarias - Unidades</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <script>
+    fetch('menu.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('menu').innerHTML = data);
+  </script>
+  <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
+
+  <main class="container mt-5 pt-5">
+    <h1 class="text-center mb-4">Nossas Unidades</h1>
+    <div id="tabelas" class="row"></div>
+  </main>
+
+  <footer>
+    <hr>
+    <p><strong>Pescarias © 2025</strong></p>
+    <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
+  </footer>
+
+  <script>
+    // Carregar dados do JSON e criar tabelas
+    fetch('unidades.json')
+      .then(response => response.json())
+      .then(unidades => {
+        const container = document.getElementById('tabelas');
+        unidades.forEach(unidade => {
+          const col = document.createElement('div');
+          col.className = "col-md-4 mb-4";
+
+          col.innerHTML = `
+            <table class="table table-dark table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th colspan="2" class="text-center">${unidade.unidade}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Email</strong></td>
+                  <td>${unidade.email}</td>
+                </tr>
+                <tr>
+                  <td><strong>Telefone</strong></td>
+                  <td>${unidade.telefone}</td>
+                </tr>
+                <tr>
+                  <td><strong>Responsável</strong></td>
+                  <td>${unidade.responsavel}</td>
+                </tr>
+              </tbody>
+            </table>
+          `;
+          container.appendChild(col);
+        });
+      });
+  </script>
+
+</body>
+</html>
