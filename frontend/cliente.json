@@ -1,28 +1,22 @@
 [
   { 
-    "login": "amandalps", 
-    "senha": "1234", 
-    "nome": "Amanda Lopes", 
-    "email": "amandalps@gmail.com", 
-    "telefone": "(11) 97756-1109", 
-    "cidade": "Campinas" 
+    "unidade": "Unidade Moema", 
+    "email": "pescariasmoema@gmail.com", 
+    "telefone": "(11) 98256-9291", 
+    "responsavel": "César Mendes" 
   },
   
   { 
-    "login": "victorcorrea", 
-    "senha": "45678", 
-    "nome": "Victor Correa", 
-    "email": "victcrr20@hotmail.com", 
-    "telefone": "(21) 99976-3609", 
-    "cidade": "Rio de Janeiro" 
+    "unidade": "Unidade Centro", 
+    "email": "pescariascentro@gmail.com", 
+    "telefone": "(11) 90987-3423", 
+    "responsavel": "Fátima Silva" 
   },
 
   {
-    "login": "andressa",
-    "senha": "abcd",
-    "nome": "Andressa Andrade",
-    "email": "andressaand@gmail.com",
-    "telefone": "(11) 98276-0099",
-    "cidade": "São Paulo"
+    "unidade": "Unidade Morumbi", 
+    "email": "pescariasmorumbi@gmail.com", 
+    "telefone": "(11) 97754-6923", 
+    "responsavel": "Alessandra Neves" 
   }
 ]
