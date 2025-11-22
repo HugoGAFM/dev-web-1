@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pescarias - Home</title>
+  <title>Pescarias - Equipamentos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -17,167 +17,219 @@
   <script>
     fetch('menu.html')
       .then(response => response.text())
-      .then(data => document.getElementById('menu').innerHTML = data);
+      .then(data => {
+        document.getElementById('menu').innerHTML = data;
+        initMenuAuth();
+      });
+
+    function initMenuAuth() {
+      const authArea = document.getElementById('auth-area');
+      if (!authArea) return;
+      authArea.innerHTML = '';
+      const token = localStorage.getItem('token');
+      if (token) {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="perfil.html">Minha Conta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout-link">Sair</a>
+          </li>
+        `);
+        document.getElementById('logout-link')?.addEventListener('click', (e) => { e.preventDefault(); localStorage.removeItem('token'); location.reload(); });
+      } else {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Entrar</a>
+          </li>
+        `);
+      }
+    }
   </script>
   <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
 
-  <section class="py-5">
-    <h1 class="fw-normal lh-1">Equipamentos</h2>
+  <main class="container" style="padding-top:80px;">
+    <section class="py-5">
+      <h1 class="fw-normal lh-1">Equipamentos</h1>
       <p>Aqui você encontra varas, molinetes, carretilhas e muito mais!</p>
-  </section>
+    </section>
 
-  <hr class="filter-divider">
-  <section class="row">
-    <div class="col-lg-3 col-md-4 col-sm-5">
-      <h4>Filtros</h4>
-      <form>
-        <fieldset>
-          <legend>Tipo de Equipamento</legend>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="varas" id="varas" name="tipo">
-            <label class="form-check-label" for="varas">
-              Varas de Pesca
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="carretilhas" name="tipo" id="carretilhas">
-            <label class="form-check-label" for="carretilhas">
-              Carretilhas
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="molinetes" name="tipo" value="molinetes">
-            <label class="form-check-label" for="molinetes">
-              Molinetes
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="anzóis" name="tipo" value="anzois">
-            <label class="form-check-label" for="anzóis">
-              Anzóis
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="alicates" name="tipo" value="alicates">
-            <label class="form-check-label" for="alicates">
-              Alicates e Ferramentas
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Tamanho</legend>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="pequeno" name="tamanho" value="pequeno">
-            <label class="form-check-label" for="pequeno">
-              Pequeno (até 1,5m)
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="medio" name="tamanho" value="medio">
-            <label class="form-check-label" for="medio">
-              Médio (1,5m a 2,4m)
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="grande" name="tamanho" value="grande">
-            <label class="form-check-label" for="grande">
-              Grande (acima de 2,4m)
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Marcas</legend>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="marine" name="marca" value="marine">
-            <label class="form-check-label" for="marine">Marine Sports</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="albatroz" name="marca" value="albatroz">
-            <label class="form-check-label" for="albatroz">Albatroz</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="lumis" name="marca" value="lumis">
-            <label class="form-check-label" for="lumis">Lumis</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="shimano" name="marca" value="shimano">
-            <label class="form-check-label" for="shimano">Shimano</label>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="col-lg-9 col-md-8 col-sm-7">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
-            <img src="imagens/vara1.jpg" alt="Vara de Pesca" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Vara de Pesca Lumis Carbon Pro 2,10m</h5>
-              <p><b>R$ 199,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+    <hr class="filter-divider">
+    <section class="row">
+      <div class="col-lg-3 col-md-4 col-sm-5">
+        <h4>Filtros</h4>
+        <form id="filters-form">
+          <fieldset>
+            <legend>Tipo de Equipamento</legend>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="varas" id="varas" name="tipo">
+              <label class="form-check-label" for="varas">Varas de Pesca</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="carretilhas" name="tipo" id="carretilhas">
+              <label class="form-check-label" for="carretilhas">Carretilhas</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="molinetes" name="tipo" value="molinetes">
+              <label class="form-check-label" for="molinetes">Molinetes</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="anzois" name="tipo" value="anzois">
+              <label class="form-check-label" for="anzois">Anzóis</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="alicates" name="tipo" value="alicates">
+              <label class="form-check-label" for="alicates">Alicates e Ferramentas</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Tamanho</legend>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="pequeno" name="tamanho" value="pequeno">
+              <label class="form-check-label" for="pequeno">Pequeno (até 1,5m)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="medio" name="tamanho" value="medio">
+              <label class="form-check-label" for="medio">Médio (1,5m a 2,4m)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="grande" name="tamanho" value="grande">
+              <label class="form-check-label" for="grande">Grande (acima de 2,4m)</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Marcas</legend>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="marine" name="marca" value="marine">
+              <label class="form-check-label" for="marine">Marine Sports</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="albatroz" name="marca" value="albatroz">
+              <label class="form-check-label" for="albatroz">Albatroz</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="lumis" name="marca" value="lumis">
+              <label class="form-check-label" for="lumis">Lumis</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="shimano" name="marca" value="shimano">
+              <label class="form-check-label" for="shimano">Shimano</label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="col-lg-9 col-md-8 col-sm-7">
+        <div class="row" id="products-row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 product-card" data-tipo="varas" data-tamanho="medio" data-marca="lumis">
+              <img src="imagens/vara1.jpg" alt="Vara de Pesca" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Vara de Pesca Lumis Carbon Pro 2,10m</h5>
+                <p><b>R$ 199,90</b></p>
+                <a href="checkout.html?product=vara-lumis" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
-            <img src="imagens/carretilha1.jpg" alt="arretilha Shimano" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Carretilha Shimano Curado DC</h5>
-              <p><b>R$ 1.299,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 product-card" data-tipo="carretilhas" data-tamanho="medio" data-marca="shimano">
+              <img src="imagens/carretilha1.jpg" alt="Carretilha Shimano" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Carretilha Shimano Curado DC</h5>
+                <p><b>R$ 1.299,90</b></p>
+                <a href="checkout.html?product=carretilha-shimano" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
-            <img src="imagens/molinetes1.jpg" alt="Molinetes Marine Sports" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Molinetes Marine Sports Arena 4000</h5>
-              <p><b>R$ 279,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 product-card" data-tipo="molinetes" data-tamanho="medio" data-marca="marine">
+              <img src="imagens/molinetes1.jpg" alt="Molinetes Marine Sports" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Molinetes Marine Sports Arena 4000</h5>
+                <p><b>R$ 279,90</b></p>
+                <a href="checkout.html?product=molinete-marine" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
-            <img src="imagens/alicate1.jpg" alt="Alicate de pesca" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Alicate Multiuso Albatroz</h5>
-              <p><b>R$ 59,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 product-card" data-tipo="alicates" data-tamanho="pequeno" data-marca="albatroz">
+              <img src="imagens/alicate1.jpg" alt="Alicate de pesca" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Alicate Multiuso Albatroz</h5>
+                <p><b>R$ 59,90</b></p>
+                <a href="checkout.html?product=alicate-albatroz" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
-            <img src="imagens/anzois1.jpg" alt="Kit Anzóis" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Kit Anzóis Inox Sortidos 100un</h5>
-              <p><b>R$ 29,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 product-card" data-tipo="anzois" data-tamanho="pequeno" data-marca="albatroz">
+              <img src="imagens/anzois1.jpg" alt="Kit Anzóis" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Kit Anzóis Inox Sortidos 100un</h5>
+                <p><b>R$ 29,90</b></p>
+                <a href="checkout.html?product=kit-anzois" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
-            <img src="imagens/vara2.jpg" alt="Vara de pesca carbono" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Vara de Pesca Carbon Strike 2,40m</h5>
-              <p><b>R$ 239,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 product-card" data-tipo="varas" data-tamanho="grande" data-marca="carbon">
+              <img src="imagens/vara2.jpg" alt="Vara de pesca carbono" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Vara de Pesca Carbon Strike 2,40m</h5>
+                <p><b>R$ 239,90</b></p>
+                <a href="checkout.html?product=vara-carbon-strike" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
-    </div>
-    </div>
-    </div>
-  </section>
-  <footer>
-    <hr>
-    <p><strong>Pescarias © 2025</strong></p>
-    <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
-  </footer>
+    </section>
+
+    <script>
+      
+      (function() {
+        const form = document.getElementById('filters-form');
+        if (!form) return;
+        const checkboxes = form.querySelectorAll('input[type=checkbox]');
+        const products = document.querySelectorAll('.product-card');
+
+        function applyFilters() {
+          const selected = {};
+          checkboxes.forEach(cb => {
+            if (cb.checked) {
+              selected[cb.name] = selected[cb.name] || [];
+              selected[cb.name].push(cb.value);
+            }
+          });
+
+          products.forEach(p => {
+            let visible = true;
+            // for each filter group that has selections, require a match
+            Object.keys(selected).forEach(group => {
+              const vals = selected[group];
+              const attr = p.dataset[group];
+              if (!attr || !vals.includes(attr)) visible = false;
+            });
+            p.style.display = visible ? '' : 'none';
+          });
+        }
+
+        checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+      })();
+    </script>
+
+    <footer>
+      <hr>
+      <p><strong>Pescarias © 2025</strong></p>
+      <p>Criado pelos alunos do IFSP - Matéria DEVWEB1</p>
+    </footer>
+  </main>
 </body>
 
 </html>

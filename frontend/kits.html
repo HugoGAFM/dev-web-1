@@ -17,7 +17,34 @@
   <script>
     fetch('menu.html')
       .then(response => response.text())
-      .then(data => document.getElementById('menu').innerHTML = data);
+      .then(data => {
+        document.getElementById('menu').innerHTML = data;
+        initMenuAuth();
+      });
+
+    function initMenuAuth() {
+      const authArea = document.getElementById('auth-area');
+      if (!authArea) return;
+      authArea.innerHTML = '';
+      const token = localStorage.getItem('token');
+      if (token) {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="perfil.html">Minha Conta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout-link">Sair</a>
+          </li>
+        `);
+        document.getElementById('logout-link')?.addEventListener('click', (e) => { e.preventDefault(); localStorage.removeItem('token'); location.reload(); });
+      } else {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Entrar</a>
+          </li>
+        `);
+      }
+    }
   </script>
   <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
 
@@ -129,35 +156,35 @@
     <div class="col-lg-9 col-md-8 col-sm-7">
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-tipo="grub" data-inclui="vara-molinete" data-marca="albatroz" data-preco="201-400">
             <img src="imagens/kit1.jpg" alt="Kit de Pesca Completo Albatroz" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kit de Pesca Completo Albatroz</h5>
               <p>Vara + Molinete + Acessórios</p>
               <p><b>R$ 249,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=kit-albatroz" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-tipo="rattles" data-inclui="vara-molinete" data-marca="marine" data-preco="101-200">
             <img src="imagens/kit2.jpg" alt="Kit Iniciante Marine Sports" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kit Iniciante Marine Sports</h5>
               <p>Ideal para pesca em rio e lago</p>
               <p><b>R$ 189,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=kit-marine" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-tipo="tuvira" data-inclui="isca" data-marca="saint" data-preco="até-100">
             <img src="imagens/kit3.jpg" alt="Kit Infantil com Vara Telescópica" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kit Infantil com Vara Telescópica</h5>
               <p>Colorido e leve para crianças</p>
               <p><b>R$ 119,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=kit-infantil" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
@@ -165,6 +192,36 @@
     </div>
     </div>
     </div>
+  <script>
+    (function() {
+      const form = document.querySelector('form');
+      if (!form) return;
+      const checkboxes = form.querySelectorAll('input[type=checkbox]');
+      const products = document.querySelectorAll('.product-card');
+
+      function applyFilters() {
+        const selected = {};
+        checkboxes.forEach(cb => {
+          if (cb.checked) {
+            selected[cb.name] = selected[cb.name] || [];
+            selected[cb.name].push(cb.value);
+          }
+        });
+
+        products.forEach(p => {
+          let visible = true;
+          Object.keys(selected).forEach(group => {
+            const vals = selected[group];
+            const attr = p.dataset[group];
+            if (!attr || !vals.includes(attr)) visible = false;
+          });
+          p.style.display = visible ? '' : 'none';
+        });
+      }
+
+      checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    })();
+  </script>
   </section>
 
   <footer>

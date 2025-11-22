@@ -17,7 +17,40 @@
   <script>
     fetch('menu.html')
       .then(response => response.text())
-      .then(data => document.getElementById('menu').innerHTML = data);
+      .then(data => {
+        document.getElementById('menu').innerHTML = data;
+        initMenuAuth();
+      });
+
+    // injeção de autenticação
+    function initMenuAuth() {
+      const authArea = document.getElementById('auth-area');
+      if (!authArea) return;
+      authArea.innerHTML = '';
+      const token = localStorage.getItem('token');
+      if (token) {
+        // se tiver token = usuário logado
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="perfil.html">Minha Conta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout-link">Sair</a>
+          </li>
+        `);
+        document.getElementById('logout-link')?.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem('token');
+          location.reload();
+        });
+      } else {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Entrar</a>
+          </li>
+        `);
+      }
+    }
   </script>
   <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
 
@@ -37,32 +70,35 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-          <div class="card">
+          <div class="card product-card" data-product="isca-artificial" data-price="38.63">
             <img src="imagens/isca3.jpg" alt="Isca Pesca Soft" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Isca Artificial Pesca Soft</h5>
               <p>13cm - C/ 3UN</p>
               <p><b>R$ 38,63</b></p>
+              <a href="checkout.html?product=isca-artificial" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card">
+          <div class="card product-card" data-product="vara-lumis" data-price="199.90">
             <img src="imagens/vara1.jpg" alt="Vara de pesca" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Vara de Pesca Lumis Carbon Pro 2,10m</h5>
               <p>1UN - C/ Garantia</p>
               <p><b>R$ 199,90</b></p>
+              <a href="checkout.html?product=vara-lumis" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card">
+          <div class="card product-card" data-product="kit-albatroz" data-price="249.90">
             <img src="imagens/kit1.jpg" alt="Kit de Pesca Completo Albatroz" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kit de Pesca Completo Albatroz</h5>
               <p>Vara + Molinete + Acessórios</p>
               <p><b>R$ 249,90</b></p>
+              <a href="checkout.html?product=kit-albatroz" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>

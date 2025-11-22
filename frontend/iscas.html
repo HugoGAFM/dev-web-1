@@ -17,7 +17,34 @@
   <script>
     fetch('menu.html')
       .then(response => response.text())
-      .then(data => document.getElementById('menu').innerHTML = data);
+      .then(data => {
+        document.getElementById('menu').innerHTML = data;
+        initMenuAuth();
+      });
+
+    function initMenuAuth() {
+      const authArea = document.getElementById('auth-area');
+      if (!authArea) return;
+      authArea.innerHTML = '';
+      const token = localStorage.getItem('token');
+      if (token) {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="perfil.html">Minha Conta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout-link">Sair</a>
+          </li>
+        `);
+        document.getElementById('logout-link')?.addEventListener('click', (e) => { e.preventDefault(); localStorage.removeItem('token'); location.reload(); });
+      } else {
+        authArea.insertAdjacentHTML('beforeend', `
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Entrar</a>
+          </li>
+        `);
+      }
+    }
   </script>
   <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
 
@@ -125,68 +152,68 @@
     <div class="col-lg-9 col-md-8 col-sm-7">
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-caracteristica="grub" data-tamanho="tamanho-2" data-marca="monster3x">
             <img src="imagens/isca1.jpg" alt="Isca Petisco JR Pesca" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Isca Petisco JR Pesca</h5>
               <p>12cm - C/ 5UN</p>
               <p><b>R$ 42,57</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=isca-jr" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-caracteristica="shad" data-tamanho="tamanho-2" data-marca="albatroz">
             <img src="imagens/isca2.jpg" alt="Isca Simples" class="card-img-top">
             <div class="card-body">
-              <h5 class="card-title">Carretilha Shimano Curado DC</h5>
+              <h5 class="card-title">Isca Simples</h5>
               <p>12cm - C/ 3UN</p>
               <p><b>R$ 36,89</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=isca-simples" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-caracteristica="worm" data-tamanho="tamanho-4" data-marca="actionplastic">
             <img src="imagens/isca3.jpg" alt="Isca Pesca Soft" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Isca Artificial Pesca Soft</h5>
               <p>13cm - C/ 3UN</p>
               <p><b>R$ 38,63</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=isca-soft" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-caracteristica="tuvira" data-tamanho="tamanho-5" data-marca="bigones">
             <img src="imagens/material1.jpg" alt="Linha Multifilamento 300m" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Linha Multifilamento 300m</h5>
               <p>0.20mm - Alta resistência</p>
               <p><b>R$ 59,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=linha-300m" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-caracteristica="worm" data-tamanho="tamanho-1" data-marca="albatroz">
             <img src="imagens/material2.jpg" alt="Alicate de Pesca Inox" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Alicate de Pesca Inox</h5>
               <p>Ferramenta multifuncional</p>
               <p><b>R$ 34,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=alicate-inox" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card h-100">
+          <div class="card h-100 product-card" data-caracteristica="grub" data-tamanho="tamanho-1" data-marca="blackpearl">
             <img src="imagens/material3.jpg" alt="Anzol de Aço Carbono" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Anzol de Aço Carbono</h5>
               <p>50 unidades - tamanho 3/0</p>
               <p><b>R$ 29,90</b></p>
-              <a href="checkout.html" class="btn btn-primary">Comprar</a>
+              <a href="checkout.html?product=anzol-3o" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
@@ -194,6 +221,36 @@
     </div>
     </div>
     </div>
+  <script>
+    (function() {
+      const form = document.querySelector('form');
+      if (!form) return;
+      const checkboxes = form.querySelectorAll('input[type=checkbox]');
+      const products = document.querySelectorAll('.product-card');
+
+      function applyFilters() {
+        const selected = {};
+        checkboxes.forEach(cb => {
+          if (cb.checked) {
+            selected[cb.name] = selected[cb.name] || [];
+            selected[cb.name].push(cb.value);
+          }
+        });
+
+        products.forEach(p => {
+          let visible = true;
+          Object.keys(selected).forEach(group => {
+            const vals = selected[group];
+            const attr = p.dataset[group];
+            if (!attr || !vals.includes(attr)) visible = false;
+          });
+          p.style.display = visible ? '' : 'none';
+        });
+      }
+
+      checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    })();
+  </script>
   </section>
   <footer>
     <hr>
@@ -202,6 +259,6 @@
   </footer>
 </body>
 
-<!-- CONTEUDO A COPIAR -->
+
 
 </html>

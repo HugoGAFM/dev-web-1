@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pescarias - Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <script>
+    fetch('menu.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('menu').innerHTML = data;
+        // autenticacao vai mostrar Entrar se nao tiver o token ainda
+        const event = new Event('menuLoaded');
+        window.dispatchEvent(event);
+      });
+  </script>
+  <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
+
+  <main class="container" style="padding-top:80px; max-width:480px;">
+    <h2>Entrar</h2>
+    <div id="alert-placeholder"></div>
+    <form id="login-form">
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+  </main>
+
+  <script>
+    // aceita qualquer email e password
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (!email || !password) {
+        showAlert('warning', 'Preencha email e senha.');
+        return;
+      }
+      // cria um token fake para teste
+      const fakeToken = btoa(email + ':' + password + ':' + Date.now());
+      localStorage.setItem('token', fakeToken);
+      // se não tiver token; redireciona para home 
+      const params = new URLSearchParams(location.search);
+      const next = params.get('next') || 'home.html';
+      location.href = next;
+    });
+
+    function showAlert(type, message) {
+      const p = document.getElementById('alert-placeholder');
+      p.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
+    }
+  </script>
+</body>
+
+</html>

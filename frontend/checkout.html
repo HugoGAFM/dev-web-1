@@ -14,11 +14,38 @@
 </head>
 
 <body>
-    <script>
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('menu').innerHTML = data);
-    </script>
+        <script>
+                fetch('menu.html')
+                        .then(response => response.text())
+                        .then(data => {
+                                document.getElementById('menu').innerHTML = data;
+                                initMenuAuth();
+                        });
+
+                function initMenuAuth() {
+                        const authArea = document.getElementById('auth-area');
+                        if (!authArea) return;
+                        authArea.innerHTML = '';
+                        const token = localStorage.getItem('token');
+                        if (token) {
+                                authArea.insertAdjacentHTML('beforeend', `
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="perfil.html">Minha Conta</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" id="logout-link">Sair</a>
+                                    </li>
+                                `);
+                                document.getElementById('logout-link')?.addEventListener('click', (e) => { e.preventDefault(); localStorage.removeItem('token'); location.reload(); });
+                        } else {
+                                authArea.insertAdjacentHTML('beforeend', `
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="login.html">Entrar</a>
+                                    </li>
+                                `);
+                        }
+                }
+        </script>
     <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
     <main>
         <form>
@@ -130,6 +157,28 @@
             </fieldset>
         </form>
     </main>
+        <script>
+            
+            (function(){
+                const submit = document.getElementById('submit-button');
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    const warning = document.createElement('div');
+                    warning.className = 'alert alert-warning';
+                    warning.innerHTML = 'Você precisa <a href="login.html">entrar</a> para finalizar a compra.';
+                    document.querySelector('main')?.prepend(warning);
+                    if (submit) submit.disabled = true;
+                }
+                
+                const params = new URLSearchParams(location.search);
+                const product = params.get('product');
+                if (product) {
+                    const h = document.createElement('p');
+                    h.innerHTML = '<strong>Produto:</strong> ' + product.replace(/-/g, ' ');
+                    document.querySelector('main form')?.prepend(h);
+                }
+            })();
+        </script>
 </body>
 
 </html>
