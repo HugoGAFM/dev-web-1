@@ -19,9 +19,8 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('menu').innerHTML = data;
-        // autenticacao vai mostrar Entrar se nao tiver o token ainda
-        const event = new Event('menuLoaded');
-        window.dispatchEvent(event);
+        // initialize auth area (show Entrar/Registrar)
+        try { initMenuAuth(); } catch(e) { /* ignore */ }
       });
   </script>
   <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary fixed-top"></nav>
@@ -43,8 +42,7 @@
   </main>
 
   <script>
-    // aceita qualquer email e password
-    document.getElementById('login-form').addEventListener('submit', function (e) {
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -52,14 +50,42 @@
         showAlert('warning', 'Preencha email e senha.');
         return;
       }
-      // cria um token fake para teste
-      const fakeToken = btoa(email + ':' + password + ':' + Date.now());
-      localStorage.setItem('token', fakeToken);
-      // se não tiver token; redireciona para home 
-      const params = new URLSearchParams(location.search);
-      const next = params.get('next') || 'home.html';
-      location.href = next;
+
+      try {
+        const res = await fetch('http://localhost:8080/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.token) {
+            localStorage.setItem('token', data.token);
+            const params = new URLSearchParams(location.search);
+            const next = params.get('next') || 'home.html';
+            location.href = next;
+            return;
+          }
+          showAlert('danger', 'Resposta inesperada do servidor.');
+        } else if (res.status === 400 || res.status === 401) {
+          const text = await res.text();
+          showAlert('danger', text || 'Credenciais inválidas.');
+        } else {
+          showAlert('danger', 'Erro ao conectar com o servidor.');
+        }
+      } catch (err) {
+        showAlert('danger', 'Erro de rede ao contatar o servidor.');
+      }
     });
+
+      // show success message after register redirect
+      (function(){
+        const params = new URLSearchParams(location.search);
+        if (params.get('registered') === '1') {
+          showAlert('success', 'Registro realizado com sucesso. Faça login.');
+        }
+      })();
 
     function showAlert(type, message) {
       const p = document.getElementById('alert-placeholder');

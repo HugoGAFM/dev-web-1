@@ -1,5 +1,7 @@
 package site_de_pesca.site_de_pesca.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "tb_user")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements UserDetails {
 
     @Id

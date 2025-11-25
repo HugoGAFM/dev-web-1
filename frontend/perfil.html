@@ -42,6 +42,9 @@
           <li class="nav-item">
             <a class="nav-link" href="login.html">Entrar</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Registrar</a>
+          </li>
         `);
       }
     }
@@ -79,30 +82,47 @@
       }
 
       function renderFromToken(token) {
-        // formato do token de teste: (email + ':' + password + ':' + timestamp)
-        let decoded;
+        // If token looks like JWT (contains two dots), decode payload
         try {
-          decoded = atob(token);
-        } catch (e) {
-          container.innerHTML = `<div class="alert alert-danger">Token inválido.</div>`;
-          return;
-        }
-        const parts = decoded.split(':');
-        const email = parts[0] || 'desconhecido';
-        const when = parts[2] ? new Date(Number(parts[2])) : null;
-        const whenStr = when ? when.toLocaleString() : 'desconhecido';
+          if (token.split('.').length === 3) {
+            const payload = JSON.parse(atob(token.split('.')[1].replaceAll('-', '+').replaceAll('_', '/')));
+            const email = payload.sub || payload.email || payload.subject || 'desconhecido';
+            const userId = payload.userId || payload.id || 'desconhecido';
+            container.innerHTML = `
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Dados do Usuário</h5>
+                  <p><strong>ID:</strong> ${escapeHtml(String(userId))}</p>
+                  <p><strong>E-mail:</strong> ${escapeHtml(email)}</p>
+                  <p><strong>Token (base64 payload):</strong></p>
+                  <pre style="max-height:200px; overflow:auto;">${escapeHtml(JSON.stringify(payload, null, 2))}</pre>
+                </div>
+              </div>
+            `;
+            logoutBtn.disabled = false;
+            return;
+          }
 
-        container.innerHTML = `
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Dados do Usuário</h5>
-              <p><strong>E-mail:</strong> ${escapeHtml(email)}</p>
-              <p><strong>Logado em:</strong> ${escapeHtml(whenStr)}</p>
-              <p><strong>Token (parcial):</strong> ${escapeHtml(token.substring(0, 16))}... (escondido)</p>
+          // fallback: non-JWT token (old test token)
+          let decoded = atob(token);
+          const parts = decoded.split(':');
+          const email = parts[0] || 'desconhecido';
+          const when = parts[2] ? new Date(Number(parts[2])) : null;
+          const whenStr = when ? when.toLocaleString() : 'desconhecido';
+          container.innerHTML = `
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Dados do Usuário</h5>
+                <p><strong>E-mail:</strong> ${escapeHtml(email)}</p>
+                <p><strong>Logado em:</strong> ${escapeHtml(whenStr)}</p>
+                <p><strong>Token (parcial):</strong> ${escapeHtml(token.substring(0, 16))}... (escondido)</p>
+              </div>
             </div>
-          </div>
-        `;
-        logoutBtn.disabled = false;
+          `;
+          logoutBtn.disabled = false;
+        } catch (e) {
+          container.innerHTML = `<div class="alert alert-danger">Erro ao decodificar token.</div>`;
+        }
       }
 
       function escapeHtml(str) {

@@ -158,7 +158,6 @@
         </form>
     </main>
         <script>
-            
             (function(){
                 const submit = document.getElementById('submit-button');
                 const token = localStorage.getItem('token');
@@ -169,14 +168,69 @@
                     document.querySelector('main')?.prepend(warning);
                     if (submit) submit.disabled = true;
                 }
-                
+
                 const params = new URLSearchParams(location.search);
                 const product = params.get('product');
                 if (product) {
                     const h = document.createElement('p');
+                    h.id = 'selected-product';
                     h.innerHTML = '<strong>Produto:</strong> ' + product.replace(/-/g, ' ');
                     document.querySelector('main form')?.prepend(h);
                 }
+
+                // Submit handler: post order to backend
+                const form = document.querySelector('main form');
+                form?.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                        alert('Você precisa entrar para finalizar a compra.');
+                        return;
+                    }
+
+                    const params = new URLSearchParams(location.search);
+                    const product = params.get('product') || document.getElementById('selected-product')?.textContent || 'Produto';
+
+                    const payload = {
+                        produto: (product || 'Produto').replace(/-/g, ' '),
+                        preco: null
+                    };
+
+                    try {
+                        const res = await fetch('http://localhost:8080/pedidos', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (res.status === 201) {
+                            const data = await res.json();
+                            const success = document.createElement('div');
+                            success.className = 'alert alert-success';
+                            success.innerText = 'Pedido criado com sucesso! ID: ' + data.id;
+                            document.querySelector('main')?.prepend(success);
+                            submit.disabled = true;
+                        } else if (res.status === 401) {
+                            alert('Sessão expirada ou inválida. Faça login novamente.');
+                            localStorage.removeItem('token');
+                            location.href = 'login.html';
+                        } else {
+                            const text = await res.text();
+                            const err = document.createElement('div');
+                            err.className = 'alert alert-danger';
+                            err.innerText = 'Erro ao criar pedido: ' + text;
+                            document.querySelector('main')?.prepend(err);
+                        }
+                    } catch (err) {
+                        const ebox = document.createElement('div');
+                        ebox.className = 'alert alert-danger';
+                        ebox.innerText = 'Erro de conexão ao enviar pedido.';
+                        document.querySelector('main')?.prepend(ebox);
+                    }
+                });
             })();
         </script>
 </body>

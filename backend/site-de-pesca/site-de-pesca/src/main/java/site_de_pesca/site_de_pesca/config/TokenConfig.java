@@ -22,7 +22,8 @@ public class TokenConfig {
         return JWT.create()
         .withClaim("userId", user.getId())
         .withSubject(user.getEmail())
-        .withExpiresAt(Instant.now().plusSeconds(86400))
+        // token válido por 1 hora (3600s)
+        .withExpiresAt(Instant.now().plusSeconds(3600))
         .withIssuedAt(Instant.now())
         .sign(algorithm);
     }
